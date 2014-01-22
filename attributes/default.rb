@@ -52,7 +52,7 @@ when "ubuntu"
   when node['platform_version'].to_f <= 11.04
     default['postgresql']['version'] = "8.4"
   else
-    default['postgresql']['version'] = "9.1"
+    default['postgresql']['version'] = "9.3"
   end
 
   default['postgresql']['dir'] = "/etc/postgresql/#{node['postgresql']['version']}/main"
@@ -63,9 +63,9 @@ when "ubuntu"
     default['postgresql']['server']['service_name'] = "postgresql"
   end
 
-  default['postgresql']['client']['packages'] = ["postgresql-client-#{node['postgresql']['version']}","libpq-dev"]
-  default['postgresql']['server']['packages'] = ["postgresql-#{node['postgresql']['version']}"]
-  default['postgresql']['contrib']['packages'] = ["postgresql-contrib-#{node['postgresql']['version']}"]
+  default['postgresql']['client']['packages'] = ["postgresql-client-9.3","libpq-dev"]
+  default['postgresql']['server']['packages'] = ["postgresql-9.3"]
+  default['postgresql']['contrib']['packages'] = ["postgresql-contrib-9.3"]
 
 when "fedora"
 
@@ -170,7 +170,7 @@ when 'debian'
   default['postgresql']['config']['log_line_prefix'] = '%t '
   default['postgresql']['config']['datestyle'] = 'iso, mdy'
   default['postgresql']['config']['default_text_search_config'] = 'pg_catalog.english'
-  default['postgresql']['config']['ssl'] = true
+  default['postgresql']['config']['ssl'] = false
 when 'rhel', 'fedora', 'suse'
   default['postgresql']['config']['listen_addresses'] = 'localhost'
   default['postgresql']['config']['max_connections'] = 100
